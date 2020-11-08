@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Dimensiunea_Religioasa
 {
-    public partial class Form1 : Form
+    public partial class FormCostin : Form
     {
-        public Form1()
+        public FormCostin()
         {
             InitializeComponent();
         }
