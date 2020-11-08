@@ -44,7 +44,7 @@ namespace Dimensiunea_Religioasa
             PanelForms.Controls.Add(new FormCostin() { TopLevel = false, FormBorderStyle = FormBorderStyle.None, Dock = DockStyle.Fill, Size = PanelForms.Size, Visible = true });
         }
 
-        /*private void openChildForm(Form childForm)
+        private void openChildForm(Form childForm)
         {
             if (currentChildForm != null)
             {
@@ -57,12 +57,12 @@ namespace Dimensiunea_Religioasa
                 childForm.TopLevel = false;
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.Dock = DockStyle.Fill;
-                panelDesktop.Controls.Add(childForm);
-                panelDesktop.Tag = childForm;
+                //panelDesktop.Controls.Add(childForm);
+                //panelDesktop.Tag = childForm;
                 childForm.BringToFront();
                 childForm.Show();
             }
         }
-        */
+        
     }
 }
