@@ -20,49 +20,65 @@ namespace Dimensiunea_Religioasa
             InitializeComponent();
         }
 
-        private void BtnReligie_Click(object sender, EventArgs e)
+        //asta activeaza double buffering ca sa nu mai flickereasca
+        protected override CreateParams CreateParams
         {
-            PanelForms.Controls.Clear();
-            PanelForms.Controls.Add(new FormReligie() { TopLevel = false, FormBorderStyle = FormBorderStyle.None, Dock = DockStyle.Fill, Size = PanelForms.Size, Visible = true });
+            get
+            {
+                CreateParams handleparam = base.CreateParams;
+                handleparam.ExStyle |= 0x02000000;
+                return handleparam;
+            }
         }
 
-        private void BtnSacru_Click(object sender, EventArgs e)
+        private void btnSacruSiProfan_Click(object sender, EventArgs e)
         {
-            PanelForms.Controls.Clear();
-            PanelForms.Controls.Add(new FormSacru() { TopLevel = false, FormBorderStyle = FormBorderStyle.None, Dock = DockStyle.Fill, Size = PanelForms.Size, Visible = true });
+            hideSubPanel(subPanel);
+            openChildForm(new FormSacru());
         }
 
-        private void BtnDosoftei_Click(object sender, EventArgs e)
+        private void btnCostinMiron_Click(object sender, EventArgs e)
         {
-            PanelForms.Controls.Clear();
-            PanelForms.Controls.Add(new FormDosoftei() { TopLevel = false, FormBorderStyle = FormBorderStyle.None, Dock = DockStyle.Fill, Size = PanelForms.Size, Visible = true });
+            hideSubPanel(subPanel);
+            openChildForm(new FormCostin());
         }
 
-        private void BtnMiron_Click(object sender, EventArgs e)
+        private void btnDosoftei_Click(object sender, EventArgs e)
         {
-            PanelForms.Controls.Clear();
-            PanelForms.Controls.Add(new FormCostin() { TopLevel = false, FormBorderStyle = FormBorderStyle.None, Dock = DockStyle.Fill, Size = PanelForms.Size, Visible = true });
+            hideSubPanel(subPanel);
+            openChildForm(new FormDosoftei());
+        }
+
+        private void btnRugaciuni_Click(object sender, EventArgs e)
+        {
+            showSubPanel(subPanel);
         }
 
         private void openChildForm(Form childForm)
         {
             if (currentChildForm != null)
             {
-                if (currentChildForm != null)
-                {
-                    currentChildForm.Close();
-                }
-
-                currentChildForm = childForm;
-                childForm.TopLevel = false;
-                childForm.FormBorderStyle = FormBorderStyle.None;
-                childForm.Dock = DockStyle.Fill;
-                //panelDesktop.Controls.Add(childForm);
-                //panelDesktop.Tag = childForm;
-                childForm.BringToFront();
-                childForm.Show();
+                currentChildForm.Close();
             }
+
+            currentChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            InfoPanel.Controls.Add(childForm);
+            InfoPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
-        
+
+        private void showSubPanel(Panel panel)
+        {
+            panel.Visible = !panel.Visible;
+        }
+
+        private void hideSubPanel(Panel panel)
+        {
+            panel.Visible = false;
+        }
     }
 }
